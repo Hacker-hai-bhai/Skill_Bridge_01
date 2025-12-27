@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    // AUTH GUARD: Redirect to home if not logged in
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'index.html';
+    }
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard - Skill-Bridge</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500,600&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css"> 
+</head>
+<body>
+     <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/SB_logo.png" alt="Skill-Bridge Logo" class="logo-img">
+                Skill-Bridge
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="student-profile.html" class="active">Profile</a></li>
+                    <li><a href="chat.html">Chats</a></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="dashboard-content">
+
+        <header class="dashboard-header">
+            <button class="hamburger-menu" id="sidebar-toggle" aria-label="Toggle sidebar menu">
+                <span></span><span></span><span></span>
+            </button>
+            <h2>Your Profile</h2>
+        </header>
+
+
+        <section class="profile-container">
+            <div class="profile-summary-section">
+                
+                <div class="profile-pic-wrapper">
+                    <img src="assets/images/mentor-main.jpg" alt="Profile Picture" class="profile-pic" id="profile-picture">
+                    <input type="file" id="upload-pic" accept="image/*" style="display:none;">
+                    <button type="button" class="edit-pic-btn" style="display:none;">Change</button>
+                </div>
+
+                <div class="profile-details-text">
+                    <h2 id="profile-name-main">Hitesh Patel</h2>
+                    <p class="bio" id="profile-bio">Aspiring full-stack developer eager to master modern web technologies. Currently focusing on building my JavaScript foundation and React component architecture.</p>
+                    <div class="skills-summary" id="profile-skills-summary">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="profile-progress">
+                    <h4>Profile Completion: <span id="progress-text"></span></h4>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tabs-navigation">
+                <button class="tab-link active" data-tab="edit-profile"><i class="fas fa-edit"></i> Edit Profile</button>
+                <button class="tab-link" data-tab="mentor-booking"><i class="fas fa-calendar-check"></i> Book a Mentor</button>
+                <button class="tab-link" data-tab="my-activity"><i class="fas fa-list-ul"></i> My Activity</button>
+            </div>
+
+
+            <div id="edit-profile" class="profile-grid tab-panel">
+                
+                <div class="left-edit-panel">
+                    <h3>Personal Information</h3>
+                    
+                    <fieldset>
+                        <legend>Basic Details</legend>
+                        <label for="name-edit">Full Name:</label>
+                        <input type="text" id="name-edit" class="edit-input" placeholder="Enter Full Name">
+                        
+                        <label for="bio-edit">Bio/Description:</label>
+                        <textarea id="bio-edit" class="edit-input" placeholder="Tell us about your goals and current learning path..."></textarea>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Skills & Expertise</legend>
+                        <label>Manage Skills:</label>
+                        <div class="skills" id="skills-container">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag add-skill">+ Add Skill</span>
+                        </div>
+                    </fieldset>
+
+                    <div id="edit-actions-wrapper">
+                        <button id="edit-profile-btn" class="edit-profile-btn">Edit Profile</button>
+                        <div id="edit-actions" style="display:none;">
+                            <button id="save-profile-btn" class="save-profile-btn">Save Changes</button>
+                            <button id="cancel-profile-btn" class="cancel-profile-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-mentor-panel">
+                    <h3>Current Mentors</h3>
+                    <div class="mentor-card-list">
+                        <div class="mentor-card">
+                            <img src="assets\images\mentor1.jpeg" alt="Mentor">
+                            <div>
+                                <h4>Ajay Yadav</h4>
+                                <p>Full-Stack Developer</p>
+                                <div class="action-buttons">
+                                    <a href="chat.html" class="primary">Chat</a>
+                                    <a href="video-call.html" class="secondary">Call</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mentor-card">
+                            <img src="assets/images/mentor2.jpeg" alt="Mentor">
+                            <div>
+                                <h4>Sudeep Kushwaha</h4>
+                                <p>Data Scientist</p>
+                                <div class="action-buttons">
+                                    <a href="chat.html" class="primary">Chat</a>
+                                    <a href="video-call.html" class="secondary">Call</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="mentor-booking" class="detail-card tab-panel" style="display:none;">
+                <h3>Find a Mentor</h3>
+                
+                <div class="mentor-booking-header">
+                    <div class="mentor-search-controls">
+                        <input type="text" id="mentor-search" class="search-input" placeholder="Search by name or skill...">
+                        <select id="mentor-filter" class="filter-dropdown">
+                            <option value="all">All Skills</option>
+                            <option value="react">React</option>
+                            <option value="python">Python</option>
+                            <option value="design">UI/UX Design</option>
+                            <option value="node">Node.js</option>
+                        </select>
+                        <button class="filter-btn">Search Mentors</button>
+                    </div>
+                </div>
+
+                <div class="mentor-list-grid">
+                    <div class="mentor-card-lg detail-card">
+                        <div class="mentor-header">
+                            <img src="assets/images/mentor3.jpg" alt="Mentor" class="mentor-pic-lg">
+                            <div class="mentor-info">
+                                <h4>Priya Sharma</h4>
+                                <p class="mentor-tagline">Expert in Modern <strong style="color: var(--primary-color);">React</strong> & Frontend Architecture</p>
+                                <div class="mentor-rating"><i class="fas fa-star"></i> 4.9 (120 sessions)</div>
+                            </div>
+                        </div>
+                        <div class="mentor-details">
+                            <p>Focus: <strong style="color: var(--text-dark);">React, Redux, Gatsby</strong></p>
+                            <p>Rate: $45 / hour</p>
+                        </div>
+                        <button class="book-session-btn">Book Session</button>
+                    </div>
+
+                    <div class="mentor-card-lg detail-card">
+                        <div class="mentor-header">
+                            <img src="assets/images/mentor4.jpg" alt="Mentor" class="mentor-pic-lg">
+                            <div class="mentor-info">
+                                <h4>Rahul Singh</h4>
+                                <p class="mentor-tagline">Backend wizard specializing in <strong style="color: var(--primary-color);">Node</strong> & Databases</p>
+                                <div class="mentor-rating"><i class="fas fa-star"></i> 4.7 (85 sessions)</div>
+                            </div>
+                        </div>
+                        <div class="mentor-details">
+                            <p>Focus: <strong style="color: var(--text-dark);">Node, Express, MongoDB</strong></p>
+                            <p>Rate: $55 / hour</p>
+                        </div>
+                        <button class="book-session-btn">Book Session</button>
+                    </div>
+                    
+                    <div class="mentor-card-lg detail-card">
+                        <div class="mentor-header">
+                            <img src="assets/images/mentor5.jpg" alt="Mentor" class="mentor-pic-lg">
+                            <div class="mentor-info">
+                                <h4>Deepa Varma</h4>
+                                <p class="mentor-tagline">Full-Stack Engineer with focus on <strong style="color: var(--primary-color);">Python</strong></p>
+                                <div class="mentor-rating"><i class="fas fa-star"></i> 4.8 (102 sessions)</div>
+                            </div>
+                        </div>
+                        <div class="mentor-details">
+                            <p>Focus: <strong style="color: var(--text-dark);">Python, Django, AWS</strong></p>
+                            <p>Rate: $40 / hour</p>
+                        </div>
+                        <button class="book-session-btn">Book Session</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="my-activity" class="detail-card tab-panel" style="display:none;">
+                <h3>Session History & Activity</h3>
+                <div class="activity-history">
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <span class="activity-date">15 Dec 2025 (8:00 PM)</span>
+                            <span class="activity-description">Upcoming session with Priya Sharma on React Hooks</span>
+                            <span class="activity-status status-upcoming">Upcoming</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-date">05 Aug 2025 (10:00 AM)</span>
+                            <span class="activity-description">Completed session with Ajay Yadav on JavaScript basics</span>
+                            <span class="activity-status status-completed">Completed</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-date">28 Jul 2025 (1:00 PM)</span>
+                            <span class="activity-description">Canceled session on Data Visualization</span>
+                            <span class="activity-status status-cancelled">Cancelled</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+<div id="booking-modal" class="modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);">
+    <div class="modal-content" style="background: white; margin: 10% auto; padding: 25px; width: 400px; border-radius: 8px; position: relative;">
+        <span class="close-modal" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px;">&times;</span>
+        <h3>Book Session with <span id="modal-mentor-name"></span></h3>
+        <hr>
+        <label style="display:block; margin: 15px 0 5px;">Select Date & Time:</label>
+        <input type="datetime-local" id="booking-datetime" class="edit-input" style="width: 100%; padding: 10px;">
+        
+        <label style="display:block; margin: 15px 0 5px;">Learning Topic:</label>
+        <textarea id="booking-topic" class="edit-input" placeholder="What do you want to learn?" style="width: 100%; padding: 10px;"></textarea>
+        
+        <button id="confirm-booking-btn" class="save-profile-btn" style="width: 100%; margin-top: 20px;">Send Request</button>
+    </div>
+</div>
+<script src="js/profile.js"></script>
+</body>
+</html>
