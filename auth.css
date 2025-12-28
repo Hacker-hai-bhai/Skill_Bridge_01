@@ -1,0 +1,116 @@
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-light);
+    padding: 20px;
+}
+
+.auth-card {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lift);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-color);
+}
+
+.role-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.role-box {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.role-box i {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.role-box.active {
+    border-color: var(--accent-color);
+    background: #f0f7ff;
+    color: var(--accent-color);
+}
+
+.role-box input { display: none; }
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-btn:hover {
+    background: var(--accent-color);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--text-muted);
+}
+
+.auth-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+.shake { animation: shake 0.4s ease-in-out; }
